@@ -1,0 +1,17 @@
+<% if(typeof fileError !== 'undefined' && fileError !== null) {%>
+    <h6><%= fileError %></h6>
+<% } %>
+<form method="post" action="profile" enctype="multipart/form-data">
+    <div class="mb-3">
+        <input type="file" class="form-control" name="uploaded_file">
+    </div>
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username" value="<%= user.username %>">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>">
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

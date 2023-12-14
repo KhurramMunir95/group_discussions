@@ -1,0 +1,8 @@
+<h4>Groups</h4>
+<ul class="list-unstyled px-3">
+    <% if(typeof groups !== 'undefined') { %>
+        <% groups.forEach(function(group) { %>
+            <li><%= group.title %></li>
+        <% }) %>
+    <% } %>
+</ul>

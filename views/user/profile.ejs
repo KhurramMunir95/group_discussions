@@ -1,0 +1,11 @@
+<a href="editProfile" class="btn btn-success mb-3">Edit Profile</a>
+<form method="post" action="profile">
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" readonly id="username" name="username" value="<%= user.username %>">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" readonly id="email" name="email" value="<%= user.email %>">
+    </div>
+</form>

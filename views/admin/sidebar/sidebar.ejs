@@ -1,0 +1,30 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark admin-sidebar" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+      <span class="fs-4">Sidebar</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="/admin/users" class="nav-link" aria-current="page">
+            <i class="bi bi-people-fill"></i>
+            Users
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light btn-toggle" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+          Groups
+        </a>
+        <div class="collapse" id="home-collapse">
+          <ul class="list-unstyled fw-normal small">
+            <li class="nav-item py-0 ms-4">
+              <a href="/admin/groups/create" class="nav-link link-light">create a group</a>
+            </li>
+            <li class="nav-item py-0 ms-4">
+              <a href="/admin/groups" class="nav-link link-light">groups</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>

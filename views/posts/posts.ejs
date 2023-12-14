@@ -1,0 +1,74 @@
+<div class="row mt-5">
+    <div class="col-md-3">
+        <div class="card group-card">
+            <div class="card-header bg-secondary text-light">
+                <h6 class="m-0 text-center">Groups</h6>
+            </div>
+            <div class="card-body">
+                <% if(typeof groups !== 'undefined') { %>
+                    <div>
+                        <a href="/user/posts">All</a>
+                    </div>
+                    <% groups.forEach(function(group) { %>
+                    <div>
+                        <a href="/user/posts/<%= group.id %>"><%= group.title %></a>
+                    </div>
+                    <% }) %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <%- include('createPost.ejs') %>
+        <% if(typeof posts !== 'undefined') { %>
+        <div id="posts_container" data-user="<%= user._id %>">
+            <% posts.forEach(function(post) { %>
+                <div class="card mb-5" id="<%= post._id %>">
+                    <div class="card-header">
+                        <div class="media">
+                            <div>
+                                <img class="rounded-circle" src="/uploads/images/<%= post.profileImage %>" alt="profile-image">
+                            </div>
+                            <div>
+                                <h6 class="mb-0"><%= post.username %></h6>
+                                <span class="time"><%= moment(post.createdAt).fromNow() %></span>
+                            </div>
+                            <% if(post.user == user._id){ %>
+                            <div class="dropdown">
+                                <button class="btn btn-transparent dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><button class="dropdown-item edit-post" type="button" data-bs-toggle="modal" data-bs-target="#postEditModal">Edit</button></li>
+                                    <li>
+                                        <form id="post_delete_form" method="post">
+                                            <input type="hidden" class="delete_id" name="post_id" value="<%= post._id %>">
+                                            <button class="dropdown-item" type="submit">Delete</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><%= post.post %></p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="likes">
+                            <%= post.likes > 0 ? (post.likes === 1 ? post.likes + ' like' : post.likes + ' likes') : '' %>
+                        </div>
+                        <form method="post" id="post_like_form">
+                            <input type="hidden" name="post" value="<%= post._id %>">
+                            <input type="hidden" name="likes" value="1">
+                            <button class="btn p-0" type="submit">
+                                <i data-likes="<%= post.likes %>" class="like-btn bi <%= post.likes > 0 && post.isLiked ? 'liked bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up' %>"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            <% })} %>
+        </div>
+    </div>
+</div>
+
+<%- include('../modals/post_edit_modal.ejs') %>
